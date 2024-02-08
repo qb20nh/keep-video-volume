@@ -142,10 +142,11 @@
     runAfterLoad(async () => {
         log('0. loaded, starting the hook');
 
-        log('1. waiting until user is viewing a post');
-        await forPath({pattern: RegExp_escape`^/post/\d+`});
-
+        // Loop for re-attaching event listener to video player element when it's replaced or removed
         while (true) {
+            log('1. waiting until user is viewing a post');
+            await forPath({pattern: RegExp_escape`^/post/\d+`});
+
             log('2. post detected, waiting for video');
             const video = await forElement("video.video");
 
@@ -159,7 +160,9 @@
                 }
             });
             let tries = 0;
-            while (++tries < 3) {
+            // Loop for resetting the config values in local storage when errored
+            while (tries < 3) {
+                tries++;
                 try {
                     const [muted, volume] = load();
 
