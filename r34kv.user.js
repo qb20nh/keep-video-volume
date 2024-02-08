@@ -16,7 +16,7 @@
 
 
     const loggerFactory = (tag) => {
-        const logMessage = (loggerFunction, ...msg) => typeof localStorage.DEBUG_MODE === "undefined" ? void 0 : loggerFunction(tag, ...msg);
+        const logMessage = typeof localStorage.DEBUG_MODE === "undefined" ? () => {} : (loggerFunction, ...msg) => loggerFunction(tag, ...msg);
         const loggerInstance = (...msg) => logMessage(console.info, ...msg);
         loggerInstance.w = (...msg) => logMessage(console.warn, ...msg);
         loggerInstance.e = (...msg) => logMessage(console.error, ...msg);
