@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         R34 keep volume
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-08
+// @version      1.0.0
 // @description  Keeps the volume level saved to disk for convenience.
 // @author       You
 // @match        https://rule34.xyz/*
